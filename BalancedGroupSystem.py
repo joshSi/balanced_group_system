@@ -54,8 +54,7 @@ class BalancedGroupSystem(GroupSystem.GroupSystem):
 					score += self.familiarityMatrix[self.members.index(j)][self.members.index(i)]
 		return score
 
-	def calculateBalancedGroups(self, groupCount: int, verbose: bool = False) -> list[list[str]]:
-		members = self.members.copy()
+	def calculateBalancedGroups(self, groupCount: int, members: list[str] = [], verbose: bool = False) -> list[list[str]]:
 		random.shuffle(members)
 		groups = [[] for _ in range(groupCount)]
 		while members:
@@ -64,6 +63,6 @@ class BalancedGroupSystem(GroupSystem.GroupSystem):
 			if verbose: print(groups)
 		return groups
 
-	def makeBalancedGroups(self, groupCount: int) -> None:
-		groups = self.calculateBalancedGroups(groupCount)
+	def createBalancedGroups(self, groupCount: int) -> None:
+		groups = self.calculateBalancedGroups(groupCount, self.members.copy())
 		self.createGroups(groups)
