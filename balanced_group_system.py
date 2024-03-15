@@ -1,5 +1,5 @@
 import random
-import GroupSystem
+import group_system
 
 """
 BalancedGroupSystem.py
@@ -10,7 +10,7 @@ It creates groups in such a way that members meet as many new members as possibl
 Author: Joshua Si
 """
 
-class BalancedGroupSystem(GroupSystem.GroupSystem):
+class BalancedGroupSystem(group_system.GroupSystem):
 	familiarityMatrix: list[list[int]] = []
 
 	def __init__(self, members: list[str] = []):
