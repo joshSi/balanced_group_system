@@ -1,5 +1,5 @@
 import pytest
-from src.group_system import GroupSystem
+from balanced_group_system.group_system import GroupSystem
 
 @pytest.fixture
 def group_system():
