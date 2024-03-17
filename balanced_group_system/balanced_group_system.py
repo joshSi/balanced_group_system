@@ -1,5 +1,5 @@
 import random
-import group_system
+from . import group_system
 
 """
 BalancedGroupSystem.py
@@ -40,6 +40,7 @@ class BalancedGroupSystem(group_system.GroupSystem):
 				for j in group:
 					if i != j:
 						self.familiarityMatrix[self.members.index(j)][self.members.index(i)] += 1
+		return groups
 
 	def printMatrix(self) -> None:
 		for row in self.familiarityMatrix:
@@ -65,4 +66,4 @@ class BalancedGroupSystem(group_system.GroupSystem):
 
 	def createBalancedGroups(self, groupCount: int) -> None:
 		groups = self.calculateBalancedGroups(groupCount, self.members.copy())
-		self.createGroups(groups)
+		return self.createGroups(groups)
