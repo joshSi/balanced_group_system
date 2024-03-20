@@ -48,20 +48,21 @@ class BalancedGroupSystem(group_system.GroupSystem):
 
 	def evaluateGroup(self, group: list[str]) -> int:
 		score = 0
-		for i in group:
-			for j in group:
-				if i != j:
-					self.familiarityMatrix[self.members.index(j)][self.members.index(i)] += 1
-					score += self.familiarityMatrix[self.members.index(j)][self.members.index(i)]
+		for i, j in enumerate(group):
+			for k in group[i+1:]:
+				self.familiarityMatrix[self.members.index(j)][self.members.index(k)] += 1
+				self.familiarityMatrix[self.members.index(k)][self.members.index(j)] += 1
+				score += self.familiarityMatrix[self.members.index(j)][self.members.index(k)]
 		return score
 
 	def calculateBalancedGroups(self, groupCount: int, members: list[str] = [], verbose: bool = False) -> list[list[str]]:
 		random.shuffle(members)
 		groups = [[] for _ in range(groupCount)]
-		while members:
-			i = members.pop(0)
-			groups[min(enumerate(groups), key=lambda x: self.evaluateGroup(x[1]+[i]))[0]].append(i)
-			if verbose: print(groups)
+		for member in members:
+			min_group_index = min(range(groupCount), key=lambda i: self.evaluateGroup(groups[i] + [member]))
+			groups[min_group_index].append(member)
+			if verbose:
+				print(groups)
 		return groups
 
 	def createBalancedGroups(self, groupCount: int) -> None:
