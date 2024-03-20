@@ -1,7 +1,7 @@
 '''
 GroupSystem.py
 
-This module contains a class that represents a group system that creates groups and stores group history.
+This module contains a class that represents a group system that creates grouplist and stores group history.
 '''
 
 class GroupSystem:
@@ -15,8 +15,8 @@ class GroupSystem:
 		return f"GroupSystem({self.members})"
 
 	def printHistory(self) -> None:
-		for i, groups in enumerate(self.groupHistory):
-			print(i, ':', groups)
+		for i, grouplist in enumerate(self.groupHistory):
+			print(i, ':', grouplist)
 	
 	def addMember(self, member: str) -> None:
 		self.members.append(member)
@@ -25,5 +25,18 @@ class GroupSystem:
 		index = self.members.index(member)
 		self.members.pop(index)
 
-	def createGroups(self, groups: list[list[str]]) -> None:
-		self.groupHistory.append(groups)
+	def createGroups(self, grouplist: list[list[str]]) -> None:
+		self.groupHistory.append(grouplist)
+
+	def createAndValidateGroups(self, grouplist: list[list[str]]) -> None:
+		memberSet = set(self.members)
+		for group in grouplist:
+			for member in group:
+				try:
+					memberSet.remove(member)
+				except KeyError:
+					if member in self.members:
+						raise ValueError("Duplicate members found in grouplist")
+					else:
+						raise KeyError("Element '{}' was not in members".format(member))
+		self.groupHistory.append(grouplist)

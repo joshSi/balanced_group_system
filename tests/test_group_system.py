@@ -19,7 +19,19 @@ def test_remove_member(group_system):
     assert group_system.members == ['Alice', 'Charlie', 'David', 'Eve']
 
 def test_create_groups(group_system):
-    groups = [['Alice', 'Bob'], ['Charlie', 'David', 'Eve']]
-    group_system.createGroups(groups)
-    assert group_system.groupHistory == [[['Alice', 'Bob'], ['Charlie', 'David', 'Eve']]]
+    grouplist1 = [['Alice', 'Bob'], ['Charlie', 'David', 'Eve']]
+    grouplist2 = [['Alice', 'Bob'], ['Charlie'], ['David', 'Eve']]
+    group_system.createGroups(grouplist1)
+    group_system.createGroups(grouplist2)
+    assert group_system.groupHistory == [grouplist1, grouplist2]
 
+def test_create_validate_groups(group_system):
+    # Test case: Member not in groupSystem.members
+    with pytest.raises(KeyError) as exc_info:
+        group_system.createAndValidateGroups([['Alice', 'Bob'], ['Charlie', 'David', 'Frank']])
+        assert str(exc_info.value) == "Element 'Frank' was not in members list"
+    
+    # Test case: Duplicate member within a group
+    with pytest.raises(ValueError) as exc_info:
+        group_system.createAndValidateGroups([['Alice', 'Bob'], ['Charlie', 'Charlie']])
+        assert str(exc_info.value) == "Duplicate members found in grouplist"
