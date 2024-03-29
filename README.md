@@ -2,7 +2,7 @@
 A system for creating balanced groups from a list of members, aiming to maximize new interactions and minimize repeat meetings. Useful for organizations or events where networking and meeting new people is a priority.
 
 ## Testing
-Make sure to have [Python](https://www.python.org/downloads/) (>=3.8) installed,
+Make sure to have [Python](https://www.python.org/downloads/) (>=3.9) installed,
 as well as the [poetry](https://pypi.org/project/poetry/) package.
 ```bash
 pip install poetry
