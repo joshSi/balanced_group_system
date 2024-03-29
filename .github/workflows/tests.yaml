@@ -3,9 +3,15 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'balanced_group_system/**'
+      - 'tests/**'
   pull_request:
     branches:
       - main
+    paths:
+      - 'balanced_group_system/**'
+      - 'tests/**'
 
 jobs:
   unit_tests:
