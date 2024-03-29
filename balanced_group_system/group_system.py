@@ -1,42 +1,43 @@
 '''
-GroupSystem.py
+group_system.py
 
-This module contains a class that represents a group system that creates grouplist and stores group history.
+This module contains a class that represents a group system that creates group_list and stores group history.
 '''
 
 class GroupSystem:
-	members: list[str] = []
-	groupHistory: list[list[list[str]]] = []
-	
-	def __init__(self, members: list[str] = []):
-		self.members = members
-	
-	def __repr__(self) -> str:
-		return f"GroupSystem({self.members})"
+  members: list[str] = []
+  group_history: list[list[list[str]]] = []
+  
+  def __init__(self, members: list[str] = []):
+    self.members = members
+  
+  def __repr__(self) -> str:
+    return f"GroupSystem({self.members})"
 
-	def printHistory(self) -> None:
-		for i, grouplist in enumerate(self.groupHistory):
-			print(i, ':', grouplist)
-	
-	def addMember(self, member: str) -> None:
-		self.members.append(member)
+  def print_history(self) -> None:
+    for i, group_list in enumerate(self.group_history):
+      print(i, ':', group_list)
+  
+  def add_member(self, member: str) -> None:
+    self.members.append(member)
 
-	def removeMember(self, member: str) -> None:
-		index = self.members.index(member)
-		self.members.pop(index)
+  def remove_member(self, member: str) -> None:
+    index = self.members.index(member)
+    self.members.pop(index)
 
-	def createGroups(self, grouplist: list[list[str]]) -> None:
-		self.groupHistory.append(grouplist)
+  def create_groups(self, group_list: list[list[str]]) -> None:
+    self.group_history.append(group_list)
 
-	def createAndValidateGroups(self, grouplist: list[list[str]]) -> None:
-		memberSet = set(self.members)
-		for group in grouplist:
-			for member in group:
-				try:
-					memberSet.remove(member)
-				except KeyError:
-					if member in self.members:
-						raise ValueError("Duplicate members found in grouplist")
-					else:
-						raise KeyError("Element '{}' was not in members".format(member))
-		self.groupHistory.append(grouplist)
+  # Slower version of create_groups that validates input
+  def create_and_validate_groups(self, group_list: list[list[str]]) -> None:
+    member_set = set(self.members)
+    for group in group_list:
+      for member in group:
+        try:
+          member_set.remove(member)
+        except KeyError:
+          if member in self.members:
+            raise ValueError("Duplicate members found in group_list")
+          else:
+            raise KeyError("Element '{}' was not in members".format(member))
+    self.group_history.append(group_list)
