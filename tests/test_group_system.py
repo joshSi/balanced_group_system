@@ -3,7 +3,6 @@ from balanced_group_system import GroupSystem
 
 @pytest.fixture
 def group_system():
-  # Initialize GroupSystem instance with some initial members
   return GroupSystem(['Alice', 'Bob', 'Charlie', 'David', 'Eve'])
 
 def test_init(group_system):
