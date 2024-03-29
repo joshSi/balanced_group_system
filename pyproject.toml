@@ -5,7 +5,7 @@ description = "A simple system to balance groups of people based on their prefer
 authors = ["Joshua Si <joshuasi777@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.8.0"
+python = "^3.9.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.2"
