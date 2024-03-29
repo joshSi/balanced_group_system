@@ -4,12 +4,10 @@ group_system.py
 This module contains a class that represents a group system that creates group_list and stores group history.
 '''
 
-class GroupSystem:
-  members: list[str] = []
-  group_history: list[list[list[str]]] = []
-  
+class GroupSystem:  
   def __init__(self, members: list[str] = []):
-    self.members = members
+    self.members: list[str] = members
+    self.group_history: list[list[list[str]]] = []
   
   def __repr__(self) -> str:
     return f"GroupSystem({self.members})"

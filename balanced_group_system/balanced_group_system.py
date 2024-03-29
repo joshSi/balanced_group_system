@@ -11,11 +11,9 @@ Author: Joshua Si
 """
 
 class BalancedGroupSystem(group_system.GroupSystem):
-  familiarity_matrix: list[list[int]] = []
-
   def __init__(self, members: list[str] = []):
     super().__init__(members)
-    self.familiarity_matrix = [[0 for _ in range(len(members))] for _ in range(len(members))]
+    self.familiarity_matrix: list[list[int]] = [[0 for _ in range(len(members))] for _ in range(len(members))]
 
   def __repr__(self) -> str:
     return f"BalancedGroupSystem({self.members})"
