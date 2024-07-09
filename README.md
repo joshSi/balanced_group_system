@@ -1,5 +1,7 @@
 # Balanced Group System
-A system for creating balanced groups from a list of members, aiming to maximize new interactions and minimize repeat meetings. Useful for organizations or events where networking and meeting new people is a priority.
+A system for creating balanced groups from a list of members, aiming to maximize new interactions and minimize repeat meetings
+
+Useful for organizations or events where networking and meeting new people is a priority. See [Social Golfer Problem](https://en.wikipedia.org/wiki/Social_golfer_problem)
 
 ![Tests](https://github.com/joshSi/balanced_group_system/actions/workflows/tests.yaml/badge.svg)
 ## Testing
