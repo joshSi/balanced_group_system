@@ -10,7 +10,6 @@ python = "^3.9.0"
 [tool.poetry.group.test.dependencies]
 pytest = "^6.2.2"
 
-
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 
