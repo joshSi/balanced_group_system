@@ -25,11 +25,14 @@ class BalancedGroupSystem(group_system.GroupSystem):
     self.familiarity_matrix.append([0 for _ in range(len(self.members))])
   
   def remove_member(self, member: str) -> None:
-    index = self.members.index(member)
-    super().remove_member(member)
-    for row in self.familiarity_matrix:
-      row.pop(index)
-    self.familiarity_matrix.pop(index)
+    try:
+      index = self.members.index(member)
+      super().remove_member(member)
+      for row in self.familiarity_matrix:
+        row.pop(index)
+      self.familiarity_matrix.pop(index)
+    except ValueError:
+      raise ValueError("Member '{}' was not in members".format(member))
     
   def create_groups(self, groups: list[list[str]]) -> list[list[str]]:
     super().create_groups(groups)

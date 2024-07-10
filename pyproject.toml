@@ -7,8 +7,9 @@ authors = ["Joshua Si <joshuasi777@gmail.com>"]
 [tool.poetry.dependencies]
 python = "^3.9.0"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.test.dependencies]
 pytest = "^6.2.2"
+
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
