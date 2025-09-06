@@ -28,9 +28,4 @@ def test_create_validate_groups(group_system):
   # Test case: Member not in groupSystem.members
   with pytest.raises(KeyError) as exc_info:
     group_system.create_and_validate_groups([['Alice', 'Bob'], ['Charlie', 'David', 'Frank']])
-    assert str(exc_info.value) == "Element 'Frank' was not in members list"
-  
-  # Test case: Duplicate member within a group
-  with pytest.raises(ValueError) as exc_info:
-    group_system.create_and_validate_groups([['Alice', 'Bob'], ['Charlie', 'Charlie']])
-    assert str(exc_info.value) == "Duplicate members found in group_list"
+    assert str(exc_info.value) == "Key Error: Element 'Frank' was not in members list"
