@@ -7,14 +7,14 @@ This module contains a class that represents a group system that creates group_l
 class GroupSystem:  
   def __init__(self, members: list[str] = []):
     self.members: list[str] = members
-    self.group_history: list[list[list[str]]] = []
+    self.group_history: list[list[set[str]]] = []
   
   def __repr__(self) -> str:
     return f"GroupSystem({self.members})"
 
   def print_history(self) -> None:
-    for i, group_list in enumerate(self.group_history):
-      print(i, ':', group_list)
+    for i, group_set in enumerate(self.group_history):
+      print(i, ':', group_set)
   
   def add_member(self, member: str) -> None:
     self.members.append(member)
@@ -23,19 +23,16 @@ class GroupSystem:
     index = self.members.index(member)
     self.members.pop(index)
 
-  def create_groups(self, group_list: list[list[str]]) -> None:
+  def create_groups(self, group_list: list[set[str]]) -> None:
     self.group_history.append(group_list)
 
   # Slower version of create_groups that validates input
-  def create_and_validate_groups(self, group_list: list[list[str]]) -> None:
+  def create_and_validate_groups(self, group_list: list[set[str]]) -> None:
     member_set = set(self.members)
     for group in group_list:
       for member in group:
         try:
           member_set.remove(member)
         except KeyError:
-          if member in self.members:
-            raise ValueError("Duplicate members found in group_list")
-          else:
-            raise KeyError("Element '{}' was not in members".format(member))
+          raise KeyError("Element '{}' was not in members".format(member))
     self.group_history.append(group_list)
