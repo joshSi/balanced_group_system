@@ -55,9 +55,9 @@ class AvailableGroupScheduler(group_system.GroupSystem):
         min_threshold += 1
         new_candidates = set(member for member in candidates if self.participation_count[member] == min_threshold)
         while len(min_participation_candidates) + len(new_candidates) < group_size:
-          new_candidates = set(member for member in candidates if self.participation_count[member] == min_threshold)
+          min_participation_candidates = min_participation_candidates | new_candidates
           min_threshold += 1
-          min_participation_candidates = min_participation_candidates | set(member for member in candidates if self.participation_count[member] == min_threshold)
+          new_candidates = set(member for member in candidates if self.participation_count[member] == min_threshold)
         group = self.get_balanced_group(new_candidates, min_participation_candidates, group_size)
         schedules.append(group)
         self.update_participation(group)
