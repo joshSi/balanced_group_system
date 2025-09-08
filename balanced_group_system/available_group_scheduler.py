@@ -43,7 +43,7 @@ class AvailableGroupScheduler(group_system.GroupSystem):
         schedules.append(candidates)
         continue
       # otherwise filter for those who have participated the least to maximize new members
-      min_threshold = min(self.participation_count.values())
+      min_threshold = min(self.participation_count[member] for member in candidates)
       min_participation_candidates = set(member for member in candidates if self.participation_count[member] == min_threshold)
       if len(min_participation_candidates) > group_size:
         # now select based on familiarity matrix
@@ -80,7 +80,7 @@ class AvailableGroupScheduler(group_system.GroupSystem):
       return score + 1
 
     # Balance and distribute members
-    while len(group) < group_size:
+    while len(group) < group_size and len(candidates) > 0:
       min_candidate = min(candidates, key=lambda c: evaluate_member(group, c))
       group.add(min_candidate)
       candidates.remove(min_candidate)
