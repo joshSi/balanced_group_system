@@ -1,8 +1,10 @@
 [tool.poetry]
 name = "balanced-group-system"
 version = "0.1.0"
-description = "A simple system to balance groups of people based on their preferences"
-authors = ["Joshua Si <joshuasi777@gmail.com>"]
+description = "A management system to create balanced groups of participants"
+readme = "README.md"
+license = "MIT"
+authors = ["Joshua Si <josh.j.si@proton.me>"]
 
 [tool.poetry.dependencies]
 python = "^3.9.0"
