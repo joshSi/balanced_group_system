@@ -38,7 +38,7 @@ class BalancedGroupSystem(group_system.GroupSystem):
   def create_groups(self, groups: list[set[str]]) -> list[set[str]]:
     super().create_groups(groups)
     for group in groups:
-      self.update_familiarity(group)
+      self.__update_familiarity(group)
     return groups
 
   def print_familiarity(self) -> None:
@@ -60,13 +60,13 @@ class BalancedGroupSystem(group_system.GroupSystem):
     score = sum(self.familiarity_matrix[frozenset(pair)] for pair in pairs)
     return score
   
-  def update_familiarity(self, group: set[str]) -> None:
+  def __update_familiarity(self, group: set[str]) -> None:
     pairs = ((i, j) for i in group for j in group if i != j)
     for pair in pairs:
       self.familiarity_matrix[frozenset(pair)] += 1
 
   # Calculate balanced groups by trying to minimize score when choosing which group to add each member to
-  def calculate_balanced_groups(self, group_count: int, members: list[str] = [], verbose: bool = False) -> list[set[str]]:
+  def __calculate_balanced_groups(self, group_count: int, members: list[str] = [], verbose: bool = False) -> list[set[str]]:
     random.shuffle(members)
     groups = [set() for _ in range(group_count)]
     scores = {(): 0}
@@ -90,6 +90,6 @@ class BalancedGroupSystem(group_system.GroupSystem):
     return groups
 
 
-  def create_balanced_groups(self, group_count: int) -> list[set[str]]:
-    groups = self.calculate_balanced_groups(group_count, self.members.copy())
+  def create_balanced_groups(self, group_count: int, verbose: bool = False) -> list[set[str]]:
+    groups = self.__calculate_balanced_groups(group_count, self.members.copy(), verbose)
     return self.create_groups(groups)
