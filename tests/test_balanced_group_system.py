@@ -62,15 +62,15 @@ def test_create_groups(balanced_group_system):
   assert balanced_group_system.familiarity_matrix[frozenset(('Charlie', 'Eve'))] == 2
   assert balanced_group_system.familiarity_matrix[frozenset(('David', 'Eve'))] == 2
 
-def test_update_familiarity(balanced_group_system):
+def test__update_familiarity(balanced_group_system):
   group = ['Alice', 'Bob', 'Charlie']
-  balanced_group_system.update_familiarity(group)
+  balanced_group_system._update_familiarity(group)
   assert balanced_group_system.familiarity_matrix[frozenset(('Alice', 'Bob'))] == 2
   assert balanced_group_system.familiarity_matrix[frozenset(('Alice', 'Charlie'))] == 2
   assert balanced_group_system.familiarity_matrix[frozenset(('Bob', 'Charlie'))] == 2
 
-def test_calculate_balanced_groups(balanced_group_system):
-  groups = balanced_group_system.calculate_balanced_groups(2, balanced_group_system.members)
+def test__calculate_balanced_groups(balanced_group_system):
+  groups = balanced_group_system._calculate_balanced_groups(2, balanced_group_system.members)
   assert len(groups) == 2
   assert all(len(group) >= 2 for group in groups)
 
