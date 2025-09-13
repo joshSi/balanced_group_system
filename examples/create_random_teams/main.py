@@ -17,5 +17,3 @@ if __name__ == '__main__':
       print(f" Group {j+1}: {g}")
     for g in groups:
       assert abs(len(g) - len(members)//N) <= 1
-    # SHOULD FAIL
-    assert False
