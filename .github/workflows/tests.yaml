@@ -45,6 +45,6 @@ jobs:
     - name: Install dependencies
       run: |
         pip3 install -r examples/create_random_teams/requirements.txt
-    - name: Run main.py
+    - name: Run create_random_teams example
       run: |
-        python3 examples/create_random_teams/main.py
+        cd examples/create_random_teams && python3 main.py
