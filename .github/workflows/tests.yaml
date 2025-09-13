@@ -6,12 +6,14 @@ on:
     paths:
       - 'balanced_group_system/**'
       - 'tests/**'
+      - 'examples/**'
   pull_request:
     branches:
       - main
     paths:
       - 'balanced_group_system/**'
       - 'tests/**'
+      - 'examples/**'
 
 jobs:
   unit_tests:
@@ -35,3 +37,14 @@ jobs:
     - name: Run tests with pytest
       run: |
         poetry run pytest
+
+  integration_tests:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install dependencies
+      run: |
+        pip3 install -r examples/create_random_teams/requirements.txt
+    - name: Run main.py
+      run: |
+        python3 examples/create_random_teams/main.py
